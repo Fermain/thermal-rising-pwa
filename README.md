@@ -1,6 +1,41 @@
 # thermal-rising-pwa
+
+## Description
 ### PWA for Thermal Rising
 
+## Getting started.
+
+- Clone repo
+
+- Package manager used for this project is [pnpm](https://pnpm.io/). So, be sure to download this first.
+
+- Install node-modules:
+`pnpm install`
+
+### Pnpm terminal commands
+
+- Updates all dependencies to their latest versions, regardless of the version ranges specified in the package.json file:
+`pnpm update --latest`
+
+- Update specific dependency:
+`pnpm update <package-name> --latest`
+
+- Updates all dependencies to their latest versions that satisfy the version ranges specified in the package.json file.
+`pnpm update`
+
+**NOTE**:
+It’s important to know that updating dependencies can sometimes introduce breaking changes, so it’s a good idea to thoroughly test your project after updating dependencies to ensure that everything still works as expected.
+
+- Add package to project:
+`pnpm add <package-name>`
+  - Add devDependency:
+    `pnpm add --dev <package-name>`
+
+- Removes a specific package from the project and updates the package.json and pnpm-lock.yaml files accordingly.
+`pnpm remove <package-name>`
+
+**References**:
+- [pnpm Docs](https://pnpm.io/motivation)
 
 ## Create T3 App template
 
