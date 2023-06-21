@@ -37,6 +37,28 @@ It’s important to know that updating dependencies can sometimes introduce brea
 **References**:
 - [pnpm Docs](https://pnpm.io/motivation)
 
+## Configuration files
+
+### stylelint:
+- https://stylelint.io/user-guide/rules/
+- https://github.com/stylelint/awesome-stylelint#readme
+
+### jest:
+- https://nextjs.org/docs/pages/building-your-application/optimizing/testing#setting-up-jest-with-babel
+- https://jestjs.io/docs/configuration
+- https://testing-library.com/docs/react-testing-library/intro/
+- Next router mock:
+  - https://github.com/scottrippey/next-router-mock
+
+## Prisma schema
+
+### Next Crude
+Next-Crud is a helper library that can be integrated into Next.js applications to make the creation of API routes easier by using a model built with Prisma. It creates CRUD (Create, Read, Update, Delete) API routes with one simple function based on a Prisma model for Next.js
+
+- https://next-crud.js.org/#usage
+- https://github.com/premieroctet/next-crud
+
+
 ## Create T3 App template
 
 This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
