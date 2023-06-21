@@ -106,6 +106,9 @@ devDependencies:
   stylelint-config-recommended:
     specifier: ^12.0.0
     version: 12.0.0(stylelint@15.8.0)
+  stylelint-config-standard:
+    specifier: ^33.0.0
+    version: 33.0.0(stylelint@15.8.0)
   tailwindcss:
     specifier: ^3.3.2
     version: 3.3.2
@@ -5290,6 +5293,15 @@ packages:
       stylelint: ^15.5.0
     dependencies:
       stylelint: 15.8.0
+    dev: true
+
+  /stylelint-config-standard@33.0.0(stylelint@15.8.0):
+    resolution: {integrity: sha512-eyxnLWoXImUn77+ODIuW9qXBDNM+ALN68L3wT1lN2oNspZ7D9NVGlNHb2QCUn4xDug6VZLsh0tF8NyoYzkgTzg==}
+    peerDependencies:
+      stylelint: ^15.5.0
+    dependencies:
+      stylelint: 15.8.0
+      stylelint-config-recommended: 12.0.0(stylelint@15.8.0)
     dev: true
 
   /stylelint@15.8.0:
