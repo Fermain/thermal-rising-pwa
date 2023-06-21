@@ -37,11 +37,18 @@ It’s important to know that updating dependencies can sometimes introduce brea
 **References**:
 - [pnpm Docs](https://pnpm.io/motivation)
 
-## Additional libraries and configurations
+## Configuration files
 
-### Configuring stylelint:
-https://stylelint.io/user-guide/rules/
-https://github.com/stylelint/awesome-stylelint#readme
+### stylelint:
+- https://stylelint.io/user-guide/rules/
+- https://github.com/stylelint/awesome-stylelint#readme
+
+### jest:
+- https://nextjs.org/docs/pages/building-your-application/optimizing/testing#setting-up-jest-with-babel
+- https://jestjs.io/docs/configuration
+- https://testing-library.com/docs/react-testing-library/intro/
+- Next router mock:
+  - https://github.com/scottrippey/next-router-mock
 
 
 ## Create T3 App template
