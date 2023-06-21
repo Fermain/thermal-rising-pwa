@@ -37,6 +37,13 @@ It’s important to know that updating dependencies can sometimes introduce brea
 **References**:
 - [pnpm Docs](https://pnpm.io/motivation)
 
+## Additional libraries and configurations
+
+### Configuring stylelint:
+https://stylelint.io/user-guide/rules/
+https://github.com/stylelint/awesome-stylelint#readme
+
+
 ## Create T3 App template
 
 This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
