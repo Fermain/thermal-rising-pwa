@@ -50,6 +50,14 @@ It’s important to know that updating dependencies can sometimes introduce brea
 - Next router mock:
   - https://github.com/scottrippey/next-router-mock
 
+## Prisma schema
+
+### Next Crude
+Next-Crud is a helper library that can be integrated into Next.js applications to make the creation of API routes easier by using a model built with Prisma. It creates CRUD (Create, Read, Update, Delete) API routes with one simple function based on a Prisma model for Next.js
+
+- https://next-crud.js.org/#usage
+- https://github.com/premieroctet/next-crud
+
 
 ## Create T3 App template
 
