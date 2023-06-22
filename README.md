@@ -57,6 +57,36 @@ It’s important to know that updating dependencies can sometimes introduce brea
 
 ## Prisma schema
 
+Download and install [Docker](https://www.docker.com/)
+You many need to enable virtualization in your BIOS settings.
+
+These are the steps you will need to take each time you want to start the database. Once schema is more finalized I will create an image for it.
+
+Start up the database image:
+
+```bash
+docker-compose up
+```
+
+Migrate schema and generate the Prisma client:
+
+```bash
+npx prisma migrate dev
+npx prisma generate
+```
+
+Finally seed the database:
+
+```bash
+npx prisma db seed
+```
+
+To test the database locally, run this to spam you terminal with a the seed data:
+
+```bash
+node prisma/seedTest.js
+```
+
 ## Create T3 App template
 
 This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
