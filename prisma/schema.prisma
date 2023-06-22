@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-    provider = "prisma-client-js"
+    provider        = "prisma-client-js"
     previewFeatures = ["jsonProtocol"]
 }
 
@@ -17,7 +17,7 @@ datasource db {
 
 // Necessary for Next auth
 model Account {
-    id                String  @id @default(cuid())
+    id                String  @id @default(uuid())
     userId            String
     type              String
     provider          String
@@ -38,11 +38,12 @@ model VerificationToken {
     identifier String
     token      String   @unique
     expires    DateTime
+
     @@unique([identifier, token])
 }
 
 model Session {
-    id           String   @id @default(cuid())
+    id           String   @id @default(uuid())
     sessionToken String   @unique
     userId       String
     expires      DateTime
@@ -50,56 +51,61 @@ model Session {
 }
 
 model User {
-    id            String    @id @default(cuid())
+    id            String       @id @default(uuid())
     name          String?
-    email         String?   @unique
+    email         String?      @unique
     emailVerified DateTime?
     phone         String?
     image         String?
     accounts      Account[]
     sessions      Session[]
     inspections   Inspection[]
-    createdAt     DateTime  @default(now())
-    updatedAt     DateTime  @updatedAt
-    roles         Role    @relation( fields: [roleId], references: [id], onDelete: Cascade)
+    createdAt     DateTime     @default(now())
+    updatedAt     DateTime     @updatedAt
+    roles         Role         @relation(fields: [roleId], references: [id], onDelete: Cascade)
     roleId        String
 }
 
 model Role {
-    id               String   @id @default(cuid())
-    name             String   @unique
-    users            User[]   
-    type             RoleType
+    id    String   @id @default(uuid())
+    name  String   @unique
+    users User[]
+    type  RoleType
 
-    createUser       Boolean?
-    updateUser       Boolean?
-    deleteUser       Boolean?
-    readUser         Boolean?
+    createUser Boolean @default(false)
+    updateUser Boolean @default(false)
+    deleteUser Boolean @default(false)
+    readUser   Boolean @default(false)
 
-    createSite       Boolean?
-    updateSite       Boolean?
-    deleteSite       Boolean?
-    readSite         Boolean?
+    createSite Boolean @default(false)
+    updateSite Boolean @default(false)
+    deleteSite Boolean @default(false)
+    readSite   Boolean @default(false)
 
-    createInspection Boolean?
-    updateInspection Boolean?
-    deleteInspection Boolean?
-    readInspection   Boolean?
+    createInspection Boolean @default(false)
+    updateInspection Boolean @default(false)
+    deleteInspection Boolean @default(false)
+    readInspection   Boolean @default(false)
 
-    createEquipment  Boolean?
-    updateEquipment  Boolean?
-    deleteEquipment  Boolean?
-    readEquipment    Boolean?
+    createMachine Boolean @default(false)
+    updateMachine Boolean @default(false)
+    deleteMachine Boolean @default(false)
+    readMachine   Boolean @default(false)
 
-    createChecklist  Boolean?
-    updateChecklist  Boolean?
-    deleteChecklist  Boolean?
-    readChecklist    Boolean?
+    createChecklist Boolean @default(false)
+    updateChecklist Boolean @default(false)
+    deleteChecklist Boolean @default(false)
+    readChecklist   Boolean @default(false)
 
-    createReport     Boolean?
-    updateReport     Boolean?
-    deleteReport     Boolean?
-    readReport       Boolean?  
+    createChecklistItem Boolean @default(false)
+    updateChecklistItem Boolean @default(false)
+    deleteChecklistItem Boolean @default(false)
+    readChecklistItem   Boolean @default(false)
+
+    createReport Boolean @default(false)
+    updateReport Boolean @default(false)
+    deleteReport Boolean @default(false)
+    readReport   Boolean @default(false)
 }
 
 enum RoleType {
@@ -108,71 +114,104 @@ enum RoleType {
     GOD
 }
 
-
 model Site {
-    id        String     @id @default(cuid())
-    name      String     @unique
-    //address
+    id         String       @id @default(uuid())
+    name       String       @unique
     street     String
     city       String
     state      String
     postalCode String
     country    String
-    
-    //contact
-    phone     String?
-    email     String?
-
-    userId    String
-    equipment Equipment[]
+    phone      String?
+    email      String?
+    userId     String
+    equipment  Machine[]
+    Inspection Inspection[]
+    createdAt  DateTime     @default(now())
+    updatedAt  DateTime     @updatedAt
 }
 
-model Equipment {
-    id         String      @id @default(cuid())
-    name       String      @unique
-    site       Site        @relation(fields: [siteId], references: [id], onDelete: Cascade)
-    siteId     String
-    inspections Inspection[]
+model Machine {
+    id          String              @id @default(uuid())
+    name        String
+    site        Site                @relation(fields: [siteId], references: [id], onDelete: Cascade)
+    siteId      String
+    checks      ChecklistItem[]
+    inspections MachineInspection[]
+    createdAt   DateTime            @default(now())
+}
+
+model ChecklistItem {
+    id          String             @id @default(uuid())
+    machineId   String
+    machine     Machine            @relation(fields: [machineId], references: [id], onDelete: Cascade)
+    description String
+    results     InspectionResult[]
 }
 
 model Inspection {
-    id          String   @id @default(cuid())
-    name        String   @unique
-    equipment   Equipment @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
-    equipmentId String
-    inspector   User     @relation(fields: [inspectorId], references: [id], onDelete: Cascade)
+    id          String              @id @default(uuid())
+    date        DateTime // Date of inspection 
+    inspector   User                @relation(fields: [inspectorId], references: [id], onDelete: Cascade)
     inspectorId String
-    createdAt   DateTime @default(now())
-    updatedAt   DateTime @updatedAt
-    // checklist   Checklist @relation(fields: [checklistId], references: [id], onDelete: Cascade)
-    checklistId String
+    machines    MachineInspection[]
+    results     InspectionResult[]
+    site        Site                @relation(fields: [siteId], references: [id], onDelete: Cascade)
+    siteId      String
+    createdAt   DateTime            @default(now())
 }
 
-model Checklist {
-    id            String    @id @default(cuid())
-    name          String    @unique
-    // inspection    Inspection @relation(fields: [inspectionId], references: [id], onDelete: Cascade)
-    inspectionId  String
-    formStructure Json
-    responses     ChecklistResponse[]
+model MachineInspection {
+    machineId    String
+    machine      Machine    @relation(fields: [machineId], references: [id], onDelete: Cascade)
+    inspectionId String
+    inspection   Inspection @relation(fields: [inspectionId], references: [id], onDelete: Cascade)
+
+    @@id([machineId, inspectionId])
 }
 
-model ChecklistResponse {
-    id          String   @id @default(cuid())
-    checklist   Checklist @relation(fields: [checklistId], references: [id], onDelete: Cascade)
-    checklistId String
-    response    Json
+model InspectionResult {
+    id              String           @id @default(uuid())
+    inspectionId    String
+    inspection      Inspection       @relation(fields: [inspectionId], references: [id], onDelete: Cascade)
+    checklistItemId String
+    checklistItem   ChecklistItem    @relation(fields: [checklistItemId], references: [id], onDelete: Cascade)
+    status          InspectionStatus
+    message         String? // Optional, use only when the status is "failed"
+    photo           String? // Optional, use only when the status is "failed"
+    signature       String? // Signature URL for each inspection result or should it be on the inspection itself?
 }
-// model Image {
-//     id        String @id @default(cuid())
-//     url       String @unique
-//     equipment Equipment @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
+
+enum InspectionStatus {
+    PASSED
+    FAILED
+}
+
+// model Inspection {
+//     id          String   @id @default(uuid())
+//     name        String   @unique
+//     equipment   Equipment @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
 //     equipmentId String
+//     inspector   User     @relation(fields: [inspectorId], references: [id], onDelete: Cascade)
+//     inspectorId String
+//     createdAt   DateTime @default(now())
+//     updatedAt   DateTime @updatedAt
+//     // checklist   Checklist @relation(fields: [checklistId], references: [id], onDelete: Cascade)
+//     checklistId String
 // }
 
-// model Signature {
-//     id        String @id @default(cuid())
-//     url       String @unique
-//     user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-//     userId    String
+// model Checklist {
+//     id            String    @id @default(uuid())
+//     name          String    @unique
+//     // inspection    Inspection @relation(fields: [inspectionId], references: [id], onDelete: Cascade)
+//     inspectionId  String
+//     formStructure Json
+//     responses     ChecklistResponse[]
+// }
+
+// model ChecklistResponse {
+//     id          String   @id @default(uuid())
+//     checklist   Checklist @relation(fields: [checklistId], references: [id], onDelete: Cascade)
+//     checklistId String
+//     response    Json
 // }
