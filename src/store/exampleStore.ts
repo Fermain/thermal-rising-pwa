@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { createSelectors } from "./selectors";
 
 interface ExampleState {
   count: number;
@@ -14,4 +15,4 @@ const useExampleStore = create<ExampleState>((set) => ({
   reset: () => set({ count: 0 }),
 }));
 
-export default useExampleStore;
+export default createSelectors(useExampleStore);
