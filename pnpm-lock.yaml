@@ -50,6 +50,9 @@ dependencies:
   react-dom:
     specifier: 18.2.0
     version: 18.2.0(react@18.2.0)
+  react-google-button:
+    specifier: ^0.7.2
+    version: 0.7.2(react@18.2.0)
   superjson:
     specifier: 1.12.3
     version: 1.12.3
@@ -4813,7 +4816,6 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       react-is: 16.13.1
-    dev: true
 
   /psl@1.9.0:
     resolution: {integrity: sha512-E/ZsdU4HLs/68gYzgGTkMicWTLPdAftJLfJFlLUAAKZGkStNU72sZjT66SnMDVOfOWY/YAoiD7Jxa9iHvngcag==}
@@ -4849,9 +4851,17 @@ packages:
       react: 18.2.0
       scheduler: 0.23.0
 
+  /react-google-button@0.7.2(react@18.2.0):
+    resolution: {integrity: sha512-LPIqU2hIlc212kqks8MtKjRstquVkP3SIjxlK5B1nIfg2R7YqSusJAxZUkJA5dv/z6QeSuGyI9ujwV/VWMTyAA==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.2.0
+    dev: false
+
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
-    dev: true
 
   /react-is@17.0.2:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
