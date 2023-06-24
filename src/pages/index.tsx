@@ -1,6 +1,5 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
-import Link from "next/link";
 import ExampleCount from "~/components/exampleCount";
 import { api } from "~/utils/api";
 
@@ -21,7 +20,7 @@ export default function Home() {
               {hello.data ? hello.data.greeting : "Loading tRPC query..."}
             </p>
             <AuthShowcase />
-            <ExampleCount />
+            <ExampleCount />L
           </div>
         </div>
       </main>

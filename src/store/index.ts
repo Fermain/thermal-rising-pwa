@@ -1,1 +1,1 @@
-export { default as useExampleStore } from "./exampleStore";
+export { default as useStore } from "./store";

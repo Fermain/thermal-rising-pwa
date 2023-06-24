@@ -1,8 +1,8 @@
-import { useExampleStore } from "~/store";
+import { useStore } from "~/store";
 
 export default function ExampleCount() {
-  const { count, increase, increment, decrement, reset } = useExampleStore();
-  const value: number = 10;
+  const { count, increase, increment, decrement, reset } = useStore();
+  let value: number = 10;
 
   return (
     <div className="rounded bg-zinc-100 p-2 ">
