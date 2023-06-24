@@ -1,10 +1,7 @@
 import { useExampleStore } from "~/store";
 
 export default function ExampleCount() {
-  const count = useExampleStore.use.count();
-  const increment = useExampleStore.use.increment();
-  const decrement = useExampleStore.use.decrement();
-  const reset = useExampleStore.use.reset();
+  const { count, increment, decrement, reset } = useExampleStore();
 
   return (
     <div className="rounded bg-zinc-100 p-2 ">
