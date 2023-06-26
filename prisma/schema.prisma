@@ -119,7 +119,7 @@ model Site {
     name       String       @unique
     street     String
     city       String
-    state      String
+    province      String
     postalCode String
     country    String
     phone      String?
