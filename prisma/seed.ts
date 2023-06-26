@@ -1,12 +1,76 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
+const defaults = {
+  PERMISSIONS_MANAGER: {
+    createUser: true,
+    updateUser: true,
+    deleteUser: true,
+    readUser: true,
+    createSite: true,
+    updateSite: true,
+    deleteSite: true,
+    readSite: true,
+    createInspection: true,
+    updateInspection: true,
+    deleteInspection: true,
+    readInspection: true,
+    createMachine: true,
+    updateMachine: true,
+    deleteMachine: true,
+    readMachine: true,
+    createChecklist: true,
+    updateChecklist: true,
+    deleteChecklist: true,
+    readChecklist: true,
+    createChecklistItem: true,
+    updateChecklistItem: true,
+    deleteChecklistItem: true,
+    readChecklistItem: true,
+    createReport: true,
+    updateReport: true,
+    deleteReport: true,
+    readReport: true,
+  },
+  PERMISSIONS_INSPECTOR: {
+    createUser: false,
+    updateUser: false,
+    deleteUser: false,
+    readUser: true,
+    createSite: false,
+    updateSite: false,
+    deleteSite: false,
+    readSite: true,
+    createInspection: true,
+    updateInspection: true,
+    deleteInspection: false,
+    readInspection: true,
+    createMachine: false,
+    updateMachine: false,
+    deleteMachine: false,
+    readMachine: true,
+    createChecklist: false,
+    updateChecklist: false,
+    deleteChecklist: false,
+    readChecklist: true,
+    createChecklistItem: false,
+    updateChecklistItem: false,
+    deleteChecklistItem: false,
+    readChecklistItem: true,
+    createReport: true,
+    updateReport: true,
+    deleteReport: false,
+    readReport: true,
+  },
+};
+
 async function main() {
   const managerRole = await prisma.role.create({
     data: {
       name: "Manager",
       type: "MANAGER",
       // Add any permissions specific to the Manager role here
+      ...defaults.PERMISSIONS_MANAGER,
     },
   });
 
@@ -15,6 +79,7 @@ async function main() {
       name: "Inspector",
       type: "INSPECTOR",
       // Add any permissions specific to the Inspector role here
+      ...defaults.PERMISSIONS_INSPECTOR,
     },
   });
 
@@ -44,8 +109,8 @@ async function main() {
       data: {
         name: "Fake Site",
         street: "123 Fake Street",
-        city: "Fake City",
-        state: "FS",
+        municipality: "Fake City",
+        province: "FS",
         postalCode: "12345",
         country: "Fake Country",
         userId: users[0].id, // Assign the first manager as the owner
