@@ -118,7 +118,7 @@ model Site {
     id         String       @id @default(uuid())
     name       String       @unique
     street     String
-    city       String
+    municipality       String
     province      String
     postalCode String
     country    String
