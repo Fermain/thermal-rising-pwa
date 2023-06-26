@@ -115,20 +115,20 @@ enum RoleType {
 }
 
 model Site {
-    id         String       @id @default(uuid())
-    name       String       @unique
-    street     String
-    municipality       String
-    province      String
-    postalCode String
-    country    String
-    phone      String?
-    email      String?
-    userId     String
-    equipment  Machine[]
-    Inspection Inspection[]
-    createdAt  DateTime     @default(now())
-    updatedAt  DateTime     @updatedAt
+    id           String       @id @default(uuid())
+    name         String       @unique
+    street       String
+    municipality String
+    province     String
+    postalCode   String
+    country      String       @default("South Africa")
+    phone        String?
+    email        String?
+    userId       String
+    equipment    Machine[]
+    Inspection   Inspection[]
+    createdAt    DateTime     @default(now())
+    updatedAt    DateTime     @updatedAt
 }
 
 model Machine {
@@ -186,32 +186,3 @@ enum InspectionStatus {
     PASSED
     FAILED
 }
-
-// model Inspection {
-//     id          String   @id @default(uuid())
-//     name        String   @unique
-//     equipment   Equipment @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
-//     equipmentId String
-//     inspector   User     @relation(fields: [inspectorId], references: [id], onDelete: Cascade)
-//     inspectorId String
-//     createdAt   DateTime @default(now())
-//     updatedAt   DateTime @updatedAt
-//     // checklist   Checklist @relation(fields: [checklistId], references: [id], onDelete: Cascade)
-//     checklistId String
-// }
-
-// model Checklist {
-//     id            String    @id @default(uuid())
-//     name          String    @unique
-//     // inspection    Inspection @relation(fields: [inspectionId], references: [id], onDelete: Cascade)
-//     inspectionId  String
-//     formStructure Json
-//     responses     ChecklistResponse[]
-// }
-
-// model ChecklistResponse {
-//     id          String   @id @default(uuid())
-//     checklist   Checklist @relation(fields: [checklistId], references: [id], onDelete: Cascade)
-//     checklistId String
-//     response    Json
-// }
