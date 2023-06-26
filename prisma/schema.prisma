@@ -178,7 +178,7 @@ model InspectionResult {
     checklistItem   ChecklistItem    @relation(fields: [checklistItemId], references: [id], onDelete: Cascade)
     status          InspectionStatus
     message         String? // Optional, use only when the status is "failed"
-    photo           String? // Optional, use only when the status is "failed"
+    photo           String[] // Optional, use only when the status is "failed"
     signature       String? // Signature URL for each inspection result or should it be on the inspection itself?
 }
 
